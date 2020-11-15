@@ -74,4 +74,8 @@ public class StudentService {
   public List<Student> getByNameStartingWith(String name) {
     return studentRepository.findByNameStartsWith(name);
   }
+
+  public List<Student> getStudentsByNameWithCustomQuery(String name) {
+    return studentRepository.findByNameWithCustomQuery(name);
+  }
 }

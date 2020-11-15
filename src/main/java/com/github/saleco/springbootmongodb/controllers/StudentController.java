@@ -84,6 +84,10 @@ public class StudentController {
     return studentService.getByNameStartingWith(name);
   }
 
+  @GetMapping("/studentsByNameWithCustomQuery/{name}")
+  public List<Student> studentsByNameWithCustomQuery(@PathVariable String name) {
+    return studentService.getStudentsByNameWithCustomQuery(name);
+  }
 
 
 }

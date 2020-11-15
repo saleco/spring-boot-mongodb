@@ -2,6 +2,7 @@ package com.github.saleco.springbootmongodb.repositories;
 
 import com.github.saleco.springbootmongodb.entities.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface StudentRepository extends MongoRepository<Student, String> {
   List<Student> findBySubjectsSubjectName(String subjectName);
   List<Student> findByEmailIsLike(String email);
   List<Student> findByNameStartsWith(String name);
+
+  @Query("{'name': ?0}")
+  List<Student> findByNameWithCustomQuery(String name);
+
 }
