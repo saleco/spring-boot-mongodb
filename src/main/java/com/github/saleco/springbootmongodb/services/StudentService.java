@@ -29,7 +29,7 @@ public class StudentService {
     return studentRepository.findAll();
   }
 
-  public Page<Student> getAllStudentsPaginated(int page, int size) {
+  public Page<Student> getAllWithPaginated(int page, int size) {
     return studentRepository.findAll(PageRequest.of(page,size));
   }
 
@@ -40,5 +40,38 @@ public class StudentService {
   public String deleteStudent(String id) {
     studentRepository.deleteById(id);
     return "Student has been deleted";
+  }
+
+  public List<Student> getStudentsByName(String name) {
+    return studentRepository.findByName(name);
+  }
+
+  public List<Student> getStudentsByNameAndMail(String name, String mail) {
+    return studentRepository.findByNameAndEmail(name, mail);
+  }
+
+  public List<Student> getStudentsByNameOrMail(String name, String mail) {
+    return studentRepository.findByNameOrEmail(name, mail);
+  }
+
+  public List<Student> getAllWithSorting() {
+    Sort sort = Sort.by(Sort.Direction.ASC, "name", "email");
+    return studentRepository.findAll(sort);
+  }
+
+  public List<Student> getByDeparmentName(String departmentName) {
+    return studentRepository.findByDepartmentDepartmentName(departmentName);
+  }
+
+  public List<Student> getBySubjectName(String subjectName) {
+    return studentRepository.findBySubjectsSubjectName(subjectName);
+  }
+
+  public List<Student> getByEmailLike(String email) {
+    return studentRepository.findByEmailIsLike(email);
+  }
+
+  public List<Student> getByNameStartingWith(String name) {
+    return studentRepository.findByNameStartsWith(name);
   }
 }
